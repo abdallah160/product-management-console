@@ -87,20 +87,28 @@ namespace ConsoleApp2
                 string userInput = Console.ReadLine();
                 if (userInput == "1")
                 {
-                    Console.WriteLine("\nPlease enter the product code:");
-                    string productCode = Console.ReadLine();
-                    Console.WriteLine("Please enter the product name:");
-                    string name = Console.ReadLine();
-                    Console.WriteLine("Please enter the product description:");
-                    string description = Console.ReadLine();
-                    Console.WriteLine("Please enter the product price:");
-                    string price = Console.ReadLine();
-                    decimal realPrice = decimal.Parse(price);
-                    Console.WriteLine("Please enter the product quantity:");
-                    string quantity = Console.ReadLine();
-                    int realQuantity = int.Parse(quantity);
                     try
                     {
+                        Console.WriteLine("\nPlease enter the product code:");
+                        string productCode = Console.ReadLine();
+                        Console.WriteLine("Please enter the product name:");
+                        string name = Console.ReadLine();
+                        Console.WriteLine("Please enter the product description:");
+                        string description = Console.ReadLine();
+                        Console.WriteLine("Please enter the product price:");
+                        string price = Console.ReadLine();
+                        if (!(decimal.TryParse(price, out decimal realPrice)))
+                        {
+                            throw new ArgumentException("price must be a numeric/decimal value");
+                        }
+                        Console.WriteLine("Please enter the product quantity:");
+                        string quantity = Console.ReadLine();
+                        if (!(int.TryParse(quantity, out int realQuantity)))
+                        {
+                            throw new ArgumentException("quantity must be a numeric value");
+                        }
+
+
                         Product product = new Product(productCode, name, description, realPrice, realQuantity);
                         products.Add(product);
 
