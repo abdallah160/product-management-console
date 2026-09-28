@@ -8,7 +8,7 @@ namespace ConsoleApp2
 {
     public class Product
     {
-        private static int counter = 0;
+        private static int counter = 1;
         private int _productId;
         private string _productCode;
         private string _name;
