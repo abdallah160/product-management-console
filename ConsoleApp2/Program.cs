@@ -18,7 +18,7 @@ namespace ConsoleApp2
 
         public int ProductID
         {
-            get; set;
+            get => _productId; set => _productId = value;
         }
         public string ProductCode
         {
