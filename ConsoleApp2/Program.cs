@@ -29,7 +29,7 @@ namespace ConsoleApp2
 
         public static void ValidateDescription(string description)
         {
-            if (description.Length > 500) throw new ArgumentException("Description must be 500 characters at most");
+            if (!string.IsNullOrEmpty(description) && description.Length > 500) throw new ArgumentException("Description must be 500 characters at most");
 
         }
 
