@@ -17,29 +17,29 @@ namespace ConsoleApp2
         private decimal _price;
         private int _quantity;
 
-        public static void validateCode(string code)
+        public static void ValidateCode(string code)
         {
-            if (code.Length == 0) throw new ArgumentException("product code must entered");
+            if (string.IsNullOrWhiteSpace(code)) throw new ArgumentException("product code must entered");
+        }
+        
+        public static void ValidateName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("name must entered");
         }
 
-        public static void validateName(string name)
-        {
-            if (name.Length == 0) throw new ArgumentException("name must entered");
-        }
-
-        public static void validateDescription(string description)
+        public static void ValidateDescription(string description)
         {
             if (description.Length > 500) throw new ArgumentException("Description must be 500 characters at most");
 
         }
 
-        public static void validatePrice(decimal price)
+        public static void ValidatePrice(decimal price)
         {
             if (price <= 0) throw new ArgumentException("price must be more than 0");
 
         }
 
-        public static void validateQuantity(int quantity)
+        public static void ValidateQuantity(int quantity)
         {
             if (quantity < 0) throw new ArgumentException("quantity must equal 0 or more");
         }
@@ -47,13 +47,13 @@ namespace ConsoleApp2
 
         public int ProductID
         {
-            get => _productId; set => _productId = value;
+            get => _productId; private set => _productId = value;
         }
         public string ProductCode
         {
             get => _productCode; set
             {
-                validateCode(value);
+                ValidateCode(value);
                 _productCode = value;
             }
         }
@@ -61,7 +61,7 @@ namespace ConsoleApp2
         {
             get => _name; set
             {
-                validateName(value);
+                ValidateName(value);
                 _name = value;
             }
         }
@@ -69,7 +69,7 @@ namespace ConsoleApp2
         {
             get => _description; set
             {
-                validateDescription(value);
+                ValidateDescription(value);
                 _description = value;
 
             }
@@ -78,7 +78,7 @@ namespace ConsoleApp2
         {
             get => _price; set
             {
-                validatePrice(value);
+                ValidatePrice(value);
                 _price = value;
             }
         }
@@ -86,7 +86,7 @@ namespace ConsoleApp2
         {
             get => _quantity; set
             {
-                validateQuantity(value);
+                ValidateQuantity(value);
                 _quantity = value;
             }
         }
@@ -120,15 +120,15 @@ namespace ConsoleApp2
                     {
                         Console.WriteLine("\nPlease enter the product code:");
                         string productCode = Console.ReadLine();
-                        Product.validateCode(productCode);
+                        Product.ValidateCode(productCode);
 
                         Console.WriteLine("Please enter the product name:");
                         string name = Console.ReadLine();
-                        Product.validateName(name);
+                        Product.ValidateName(name);
 
                         Console.WriteLine("Please enter the product description:");
                         string description = Console.ReadLine();
-                        Product.validateDescription(description);
+                        Product.ValidateDescription(description);
 
                         Console.WriteLine("Please enter the product price:");
                         string price = Console.ReadLine();
@@ -136,7 +136,7 @@ namespace ConsoleApp2
                         {
                             throw new ArgumentException("price must be a numeric/decimal value");
                         }
-                        Product.validatePrice(realPrice);
+                        Product.ValidatePrice(realPrice);
 
                         Console.WriteLine("Please enter the product quantity:");
                         string quantity = Console.ReadLine();
@@ -144,7 +144,7 @@ namespace ConsoleApp2
                         {
                             throw new ArgumentException("quantity must be a numeric value");
                         }
-                        Product.validateQuantity(realQuantity);
+                        Product.ValidateQuantity(realQuantity);
 
                         Product product = new Product(productCode, name, description, realPrice, realQuantity);
                         products.Add(product);
@@ -160,7 +160,7 @@ namespace ConsoleApp2
                 }
                 else if (userInput == "2")
                 {
-                    
+
                     using (StreamReader reader = new StreamReader("products_no_id.csv"))
                     {
                         string headerLine = reader.ReadLine();
@@ -190,15 +190,15 @@ namespace ConsoleApp2
                                 Console.WriteLine("Product #" + product.ProductID + " added successfully\n");
 
                             }
-                            catch(Exception e)
+                            catch (Exception e)
                             {
                                 Console.WriteLine("This entry isn't valid because (" + e.Message + ")\n");
                                 continue;
                             }
-                            
+
                         }
                     }
-                    
+
                 }
                 else if (userInput == "3")
                 {
