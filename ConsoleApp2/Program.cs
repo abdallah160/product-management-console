@@ -16,15 +16,43 @@ namespace ConsoleApp2
         private decimal _price;
         private int _quantity;
 
+        public static void validateCode(string code)
+        {
+            if (code.Length == 0) throw new ArgumentException("product code must entered");
+        }
+
+        public static void validateName(string name)
+        {
+            if (name.Length == 0) throw new ArgumentException("name must entered");
+        }
+
+        public static void validateDescription(string description)
+        {
+            if (description.Length > 500) throw new ArgumentException("Description must be 500 characters at most");
+
+        }
+
+        public static void validatePrice(decimal price)
+        {
+            if (price <= 0) throw new ArgumentException("price must be more than 0");
+
+        }
+
+        public static void validateQuantity(int quantity)
+        {
+            if (quantity < 0) throw new ArgumentException("quantity must equal 0 or more");
+        }
+
+
         public int ProductID
         {
-            get; set;
+            get => _productId; set => _productId = value;
         }
         public string ProductCode
         {
             get => _productCode; set
             {
-                if (value.Length == 0) throw new ArgumentException("product code must entered");
+                validateCode(value);
                 _productCode = value;
             }
         }
@@ -32,7 +60,7 @@ namespace ConsoleApp2
         {
             get => _name; set
             {
-                if (value.Length == 0) throw new ArgumentException("name must entered");
+                validateName(value);
                 _name = value;
             }
         }
@@ -40,7 +68,7 @@ namespace ConsoleApp2
         {
             get => _description; set
             {
-                if (value.Length > 500) throw new ArgumentException("Description must be 500 characters at most");
+                validateDescription(value);
                 _description = value;
 
             }
@@ -49,7 +77,7 @@ namespace ConsoleApp2
         {
             get => _price; set
             {
-                if (value <= 0) throw new ArgumentException("price must be more than 0");
+                validatePrice(value);
                 _price = value;
             }
         }
@@ -57,7 +85,7 @@ namespace ConsoleApp2
         {
             get => _quantity; set
             {
-                if (value < 0) throw new ArgumentException("quantity must equal 0 or more");
+                validateQuantity(value);
                 _quantity = value;
             }
         }
@@ -91,23 +119,31 @@ namespace ConsoleApp2
                     {
                         Console.WriteLine("\nPlease enter the product code:");
                         string productCode = Console.ReadLine();
+                        Product.validateCode(productCode);
+
                         Console.WriteLine("Please enter the product name:");
                         string name = Console.ReadLine();
+                        Product.validateName(name);
+
                         Console.WriteLine("Please enter the product description:");
                         string description = Console.ReadLine();
+                        Product.validateDescription(description);
+
                         Console.WriteLine("Please enter the product price:");
                         string price = Console.ReadLine();
                         if (!(decimal.TryParse(price, out decimal realPrice)))
                         {
                             throw new ArgumentException("price must be a numeric/decimal value");
                         }
+                        Product.validatePrice(realPrice);
+
                         Console.WriteLine("Please enter the product quantity:");
                         string quantity = Console.ReadLine();
                         if (!(int.TryParse(quantity, out int realQuantity)))
                         {
                             throw new ArgumentException("quantity must be a numeric value");
                         }
-
+                        Product.validateQuantity(realQuantity);
 
                         Product product = new Product(productCode, name, description, realPrice, realQuantity);
                         products.Add(product);
