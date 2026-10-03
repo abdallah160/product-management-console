@@ -3,46 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ConsoleApp2
 {
     public class Product
     {
-        private static int counter = 1;
         private int _productId;
         private string _productCode;
         private string _name;
         private string _description;
         private decimal _price;
         private int _quantity;
-
-        private static void ValidateCode(string code)
-        {
-            if (string.IsNullOrWhiteSpace(code)) throw new ArgumentException("product code must entered");
-        }
-
-        private static void ValidateName(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("name must entered");
-        }
-
-        private static void ValidateDescription(string description)
-        {
-            if (!string.IsNullOrEmpty(description) && description.Length > 500) throw new ArgumentException("Description must be 500 characters at most");
-
-        }
-
-        private static void ValidatePrice(decimal price)
-        {
-            if (price <= 0) throw new ArgumentException("price must be more than 0");
-
-        }
-
-        private static void ValidateQuantity(int quantity)
-        {
-            if (quantity < 0) throw new ArgumentException("quantity must equal 0 or more");
-        }
-
 
         public int ProductID
         {
@@ -52,7 +24,7 @@ namespace ConsoleApp2
         {
             get => _productCode; set
             {
-                ValidateCode(value);
+                if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException("product code must entered");
                 _productCode = value;
             }
         }
@@ -60,7 +32,7 @@ namespace ConsoleApp2
         {
             get => _name; set
             {
-                ValidateName(value);
+                if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException("name must entered");
                 _name = value;
             }
         }
@@ -68,7 +40,7 @@ namespace ConsoleApp2
         {
             get => _description; set
             {
-                ValidateDescription(value);
+                if (!string.IsNullOrEmpty(value) && value.Length > 500) throw new ArgumentException("Description must be 500 characters at most");
                 _description = value;
 
             }
@@ -77,7 +49,7 @@ namespace ConsoleApp2
         {
             get => _price; set
             {
-                ValidatePrice(value);
+                if (value <= 0) throw new ArgumentException("price must be more than 0");
                 _price = value;
             }
         }
@@ -85,20 +57,18 @@ namespace ConsoleApp2
         {
             get => _quantity; set
             {
-                ValidateQuantity(value);
+                if (value < 0) throw new ArgumentException("quantity must equal 0 or more");
                 _quantity = value;
             }
         }
 
         public Product(string productCode, string name, string description, decimal price, int quantity)
         {
-            ProductID = counter;
             ProductCode = productCode;
             Name = name;
             Description = description;
             Price = price;
             Quantity = quantity;
-            counter++;
 
         }
     }
