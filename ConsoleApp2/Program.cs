@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp2
 {
@@ -46,13 +43,11 @@ namespace ConsoleApp2
 
                         Product product = new Product(productCode, name, description, realPrice, realQuantity);
                         productRepository.Add(product);
-
                         Console.WriteLine("Product #" + product.ProductID + " added successfully\n");
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message + ", please try again\n");
-
                     }
 
                 }
@@ -86,29 +81,22 @@ namespace ConsoleApp2
                                 productRepository.Add(product);
 
                                 Console.WriteLine("Product #" + product.ProductID + " added successfully\n");
-
                             }
                             catch (Exception e)
                             {
                                 Console.WriteLine("This entry isn't valid because (" + e.Message + ")\n");
                                 continue;
                             }
-
                         }
                     }
-
                 }
                 else if (userInput == "3")
                 {
                     IReadOnlyList<Product> products = productRepository.GetAll();
                     if (products.Count > 0)
                     {
-                   
-
                         Console.WriteLine("\n--- Available Products ---");
-
                         string format = "{0,-5} | {1,-12} | {2,-30} | {3,-120} | {4,10} | {5,8}";
-
                         Console.WriteLine(string.Format(format, "ID", "Code", "Name", "Description", "Price", "Qty"));
                         Console.WriteLine(new string('-', 195));
 
