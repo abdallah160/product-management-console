@@ -10,7 +10,6 @@ namespace ConsoleApp2
         {
             product.ProductID = _currentId++;
             _products.Add(product);
-
         }
         public IReadOnlyList<Product> GetAll()
         {
