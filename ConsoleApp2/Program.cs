@@ -54,6 +54,7 @@ namespace ConsoleApp2
                 else if (userInput == "2")
                 {
                     CsvProductReader.ReadFromCsv("products_no_id.csv", productRepository);
+                    
                 }
                 else if (userInput == "3")
                 {
