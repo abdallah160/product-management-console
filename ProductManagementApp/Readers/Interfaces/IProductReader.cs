@@ -1,5 +1,6 @@
-namespace ProductManagementApp.Readers.Interfaces;
-
-public interface IProductReader
+namespace ProductManagementApp.Readers.Interfaces
 {
+    public interface IProductReader
+    {
+    }
 }

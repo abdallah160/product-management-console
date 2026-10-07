@@ -2,7 +2,7 @@ namespace ProductManagementApp;
 
 internal class ProductRepository
 {
-    private readonly List<Product> _products = new List<Product>();
+    private readonly List<Product> _products = [];
     private int _currentId = 1;
 
     public void Add(Product product)

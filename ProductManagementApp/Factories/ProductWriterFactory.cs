@@ -1,8 +1,9 @@
 using ProductManagementApp.Writers;
 using ProductManagementApp.Writers.Interfaces;
 
-namespace ProductManagementApp.Factories;
-
-public class ProductWriterFactory
+namespace ProductManagementApp.Factories
 {
+    public class ProductWriterFactory
+    {
+    }
 }

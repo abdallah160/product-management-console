@@ -1,7 +1,8 @@
 using ProductManagementApp.Readers.Interfaces;
 
-namespace ProductManagementApp.Readers;
-
-public class ConsoleProductReader : IProductReader
+namespace ProductManagementApp.Readers
 {
+    public class ConsoleProductReader : IProductReader
+    {
+    }
 }

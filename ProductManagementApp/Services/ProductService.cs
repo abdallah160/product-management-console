@@ -1,7 +1,8 @@
 using ProductManagementApp.Services.Interfaces;
 
-namespace ProductManagementApp.Services;
-
-public class ProductService : IProductService
+namespace ProductManagementApp.Services
 {
+    public class ProductService : IProductService
+    {
+    }
 }

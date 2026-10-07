@@ -1,5 +1,6 @@
-namespace ProductManagementApp.Repositories.Interfaces;
-
-public interface IProductRepository
+namespace ProductManagementApp.Repositories.Interfaces
 {
+    public interface IProductRepository
+    {
+    }
 }
