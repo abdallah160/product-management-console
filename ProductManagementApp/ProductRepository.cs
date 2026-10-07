@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
-namespace ConsoleApp2
+namespace ProductManagementApp
 {
     internal class ProductRepository
     {

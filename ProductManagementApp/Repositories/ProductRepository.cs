@@ -1,6 +1,6 @@
-using ConsoleApp2.Repositories.Interfaces;
+using ProductManagementApp.Repositories.Interfaces;
 
-namespace ConsoleApp2.Repositories
+namespace ProductManagementApp.Repositories
 {
     public class ProductRepository : IProductRepository
     {

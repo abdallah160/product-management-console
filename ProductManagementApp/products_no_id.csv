@@ -1,0 +1,31 @@
+ProductCode,Name,Description,Price,Quantity
+PRD-A101,Wireless Optical Mouse,Ergonomic 2.4G wireless optical mouse with quiet click buttons.,25.99,150
+PRD-A102,Mechanical Keyboard RGB,Tenkeyless mechanical gaming keyboard with tactile blue switches.,79.5,45
+PRD-B201,Gaming Headset 7.1,Immersive surround sound gaming headset with detachable noise-cancelling microphone.,-15.0,30
+PRD-B202,USB-C Multiport Hub,Aluminum 7-in-1 USB-C adapter with HDMI 4K 3 USB 3.0 ports and SD card reader.,42.0,-5
+PRD-C301,Ultra HD 4K Monitor,27-inch IPS 4K UHD display with HDR400 and ultra-thin bezel design.,329.99,20
+PRD-C302,Ergonomic Office Chair,Adjustable lumbar support breathable mesh high-back desk chair.,189.0,15
+PRD-D401,Desk LED Lamp,Dimmable eye-care LED desk lamp with 5 color temperatures and USB charging port.,0.0,80
+PRD-D402,Bluetooth Speaker Mini,Portable waterproof Bluetooth speaker with 12 hours playtime and deep bass.,35.75,60
+PRD-E501,Laptop Cooling Pad,Dual fan quiet cooling pad with ergonomic tilt angle for up to 17 inch laptops.,22.49,110
+PRD-E502,Webcam 1080p Full HD,Streaming webcam with built-in dual stereo microphones and privacy shutter.,49.99,0
+PRD-F601,External SSD 1TB,High speed portable NVMe solid state drive with transfer speeds up to 1050 MB/s.,119.99,75
+PRD-F602,Smart Fitness Tracker,"This is an extremely detailed and intentionally over-bloated product description crafted solely to exceed the maximum allowed length of five hundred characters in order to rigorously test the validation logic of Part 2. It contains comprehensive explanations of pulse monitoring, sleep pattern algorithms, step counting precision, waterproof endurance testing, proprietary battery chemistry yielding three weeks of standby power, multiple strap options, companion smartphone integration across iOS and Android platforms, warranty clauses, regulatory compliance certificates, and customer support contact details.",59.9,40
+PRD-G701,Noise Cancelling Earbuds,True wireless earbuds with active noise cancellation and wireless charging case.,89.95,-12
+PRD-G702,Vertical Ergonomic Mouse,Natural handshake position wireless mouse reducing forearm strain and wrist pain.,29.99,65
+PRD-H801,Cat 6 Ethernet Cable 10m,High-speed gigabit ethernet network patch cable with gold plated RJ45 connectors.,9.99,200
+PRD-H802,HDMI 2.1 Braided Cable,Ultra high speed 8K@60Hz and 4K@120Hz HDMI cable with durable braided jacket.,-4.5,140
+PRD-I901,Microphone Boom Arm,Heavy duty adjustable suspension scissor mic arm stand with desk clamp.,34.2,50
+PRD-I902,Pop Filter Studio,Dual layered acoustic pop filter for broadcast and condenser microphones.,14.5,95
+PRD-J101,Standing Desk Converter,Height adjustable sit-stand desk riser with spacious dual monitor platform.,149.0,12
+PRD-J102,XL Gaming Mousepad,Smooth micro-weave cloth extended gaming surface with anti-fray stitched edges.,18.99,180
+PRD-K201,Smart Power Strip,WiFi surge protector with 4 independent smart AC outlets and 4 USB charging ports.,31.5,40
+PRD-K202,Graphics Tablet 10x6,Digital drawing tablet with 8192 levels pressure sensitivity battery-free stylus.,64.99,-1
+PRD-L301,Dual Monitor Arm Mount,Heavy-duty gas spring dual monitor mount for screens from 17 to 32 inches.,55.0,25
+PRD-L302,Laptop Privacy Screen 15.6,Anti-glare privacy filter blocking side views beyond 30 degrees for 15.6 inch laptops.,27.5,70
+PRD-M401,Wireless Presenter Clicker,RF 2.4GHz presentation remote clicker with red laser pointer and hyper-link support.,16.99,85
+PRD-M402,Thermal Paste 4g,Premium high-performance thermal compound for CPU and GPU heatsink applications.,8.99,300
+PRD-N501,Smart Home Hub Bridge,Zigbee and Z-Wave compatible smart automation gateway controller.,0.0,-8
+PRD-N502,Wireless Security Camera,1080p indoor home security camera with two-way audio and night vision.,39.99,55
+PRD-O601,Cable Management Sleeves,Flexible zipper neoprene cord organizer sleeve wrap for computer and TV wires.,12.49,160
+PRD-O602,USB 3.0 Flash Drive 128GB,Compact durable metal casing high-speed flash drive for backup and file storage.,19.99,120

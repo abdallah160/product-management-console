@@ -1,6 +1,6 @@
-using ConsoleApp2.Services.Readers.Interfaces;
+using ProductManagementApp.Services.Readers.Interfaces;
 
-namespace ConsoleApp2.Services.Readers
+namespace ProductManagementApp.Services.Readers
 {
     public class ConsoleProductReader : IProductReader
     {

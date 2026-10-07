@@ -1,6 +1,6 @@
-using ConsoleApp2.Services.Validators.Interfaces;
+using ProductManagementApp.Services.Validators.Interfaces;
 
-namespace ConsoleApp2.Services.Validators
+namespace ProductManagementApp.Services.Validators
 {
     public class ProductValidator : IProductValidator
     {
