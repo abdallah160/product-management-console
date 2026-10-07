@@ -1,20 +1,16 @@
-using System;
 
 namespace ProductManagementApp
 {
     public class Product
     {
-        private int _productId;
-        private string _productCode;
-        private string _name;
-        private string _description;
+
+        private string _productCode = string.Empty;
+        private string _name = string.Empty;
+        private string _description = string.Empty;
         private decimal _price;
         private int _quantity;
 
-        public int ProductID
-        {
-            get => _productId; set => _productId = value;
-        }
+        public int ProductID { get; set; }
         public string ProductCode
         {
             get => _productCode; set
