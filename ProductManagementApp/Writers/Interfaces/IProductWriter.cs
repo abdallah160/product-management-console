@@ -1,6 +1,5 @@
-namespace ProductManagementApp.Writers.Interfaces
+namespace ProductManagementApp.Writers.Interfaces;
+
+public interface IProductWriter
 {
-    public interface IProductWriter
-    {
-    }
 }

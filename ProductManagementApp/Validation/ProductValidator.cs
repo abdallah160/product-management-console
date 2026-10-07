@@ -1,8 +1,7 @@
 using ProductManagementApp.Validation.Interfaces;
 
-namespace ProductManagementApp.Validation
+namespace ProductManagementApp.Validation;
+
+public class ProductValidator : IProductValidator
 {
-    public class ProductValidator : IProductValidator
-    {
-    }
 }

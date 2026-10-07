@@ -1,8 +1,7 @@
 using ProductManagementApp.Readers.Interfaces;
 
-namespace ProductManagementApp.Readers
+namespace ProductManagementApp.Readers;
+
+public class CsvProductReader : IProductReader
 {
-    public class CsvProductReader : IProductReader
-    {
-    }
 }

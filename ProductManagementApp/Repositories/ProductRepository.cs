@@ -1,8 +1,7 @@
 using ProductManagementApp.Repositories.Interfaces;
 
-namespace ProductManagementApp.Repositories
+namespace ProductManagementApp.Repositories;
+
+public class ProductRepository : IProductRepository
 {
-    public class ProductRepository : IProductRepository
-    {
-    }
 }

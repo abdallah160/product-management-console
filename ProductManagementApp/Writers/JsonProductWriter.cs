@@ -1,8 +1,7 @@
 using ProductManagementApp.Writers.Interfaces;
 
-namespace ProductManagementApp.Writers
+namespace ProductManagementApp.Writers;
+
+public class JsonProductWriter : IProductWriter
 {
-    public class JsonProductWriter : IProductWriter
-    {
-    }
 }

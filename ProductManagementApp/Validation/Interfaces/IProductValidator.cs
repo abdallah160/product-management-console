@@ -1,6 +1,5 @@
-namespace ProductManagementApp.Validation.Interfaces
+namespace ProductManagementApp.Validation.Interfaces;
+
+public interface IProductValidator
 {
-    public interface IProductValidator
-    {
-    }
 }
