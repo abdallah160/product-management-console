@@ -1,6 +1,6 @@
-using ConsoleApp2.Services.Interfaces;
+using ProductManagementApp.Services.Interfaces;
 
-namespace ConsoleApp2.Services
+namespace ProductManagementApp.Services
 {
     public class ProductService : IProductService
     {

@@ -1,4 +1,4 @@
-namespace ConsoleApp2.Services.Writers.Interfaces
+namespace ProductManagementApp.Services.Writers.Interfaces
 {
     public interface IProductWriter
     {

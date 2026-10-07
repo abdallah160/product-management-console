@@ -1,4 +1,4 @@
-namespace ConsoleApp2.Services.Validators.Interfaces
+namespace ProductManagementApp.Services.Validators.Interfaces
 {
     public interface IProductValidator
     {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-
-namespace ConsoleApp2
+namespace ProductManagementApp
 {
     internal class Program
     {
@@ -53,7 +49,8 @@ namespace ConsoleApp2
                 }
                 else if (userInput == "2")
                 {
-                    CsvProductReader.ReadFromCsv("products_no_id.csv", productRepository);
+                    string csvPath = Path.Combine(AppContext.BaseDirectory, "products_no_id.csv");
+                    CsvProductReader.ReadFromCsv(csvPath, productRepository);
                     
                 }
                 else if (userInput == "3")

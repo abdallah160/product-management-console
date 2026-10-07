@@ -1,4 +1,4 @@
-namespace ConsoleApp2.Services.Readers.Interfaces
+namespace ProductManagementApp.Services.Readers.Interfaces
 {
     public interface IProductReader
     {

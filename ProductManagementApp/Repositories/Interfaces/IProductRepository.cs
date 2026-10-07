@@ -1,4 +1,4 @@
-namespace ConsoleApp2.Repositories.Interfaces
+namespace ProductManagementApp.Repositories.Interfaces
 {
     public interface IProductRepository
     {
