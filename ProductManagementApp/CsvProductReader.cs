@@ -1,43 +1,45 @@
-namespace ProductManagementApp
+namespace ProductManagementApp;
+
+internal static class CsvProductReader
 {
-    internal class CsvProductReader
+    public static void ReadFromCsv(string csvPath, ProductRepository productRepository)
     {
-        public static void ReadFromCsv(string csvPath, ProductRepository productRepository)
+        using StreamReader reader = new(csvPath);
+        string? headerLine = reader.ReadLine();
+        while (!reader.EndOfStream)
         {
-            using (StreamReader reader = new StreamReader(csvPath))
+            try
             {
-                string headerLine = reader.ReadLine();
-                while (!reader.EndOfStream)
+                string? line = reader.ReadLine();
+                if (string.IsNullOrWhiteSpace(line))
                 {
-                    try
-                    {
-                        string line = reader.ReadLine();
-                        string[] values = line.Split(',');
-                        string productCode = values[0];
-                        string name = values[1];
-                        string description = values[2];
-                        string price = values[3];
-                        if (!(decimal.TryParse(price, out decimal realPrice)))
-                        {
-                            throw new ArgumentException("price must be a numeric/decimal value");
-                        }
-                        string quantity = values[4];
-                        if (!(int.TryParse(quantity, out int realQuantity)))
-                        {
-                            throw new ArgumentException("quantity must be a numeric value");
-                        }
-
-                        Product product = new Product(productCode, name, description, realPrice, realQuantity);
-                        productRepository.Add(product);
-
-                        Console.WriteLine("Product #" + product.ProductID + " added successfully\n");
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("This entry isn't valid because (" + e.Message + ")\n");
-                        continue;
-                    }
+                    continue;
                 }
+
+                string[] values = line.Split(',');
+                string productCode = values[0];
+                string name = values[1];
+                string description = values[2];
+                string price = values[3];
+                if (!decimal.TryParse(price, out decimal realPrice))
+                {
+                    throw new ArgumentException("price must be a numeric/decimal value");
+                }
+                string quantity = values[4];
+                if (!int.TryParse(quantity, out int realQuantity))
+                {
+                    throw new ArgumentException("quantity must be a numeric value");
+                }
+
+                Product product = new(productCode, name, description, realPrice, realQuantity);
+                productRepository.Add(product);
+
+                Console.WriteLine("Product #" + product.ProductID + " added successfully\n");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("This entry isn't valid because (" + e.Message + ")\n");
+                continue;
             }
         }
     }
