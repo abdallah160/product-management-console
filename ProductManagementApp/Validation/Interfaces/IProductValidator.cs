@@ -1,6 +1,8 @@
-namespace ProductManagementApp.Validation.Interfaces
+using ProductManagementApp.Models;
+
+namespace ProductManagementApp.Validation.Interfaces;
+
+public interface IProductValidator
 {
-    public interface IProductValidator
-    {
-    }
+    ValidationResult Validate(Product product);
 }
