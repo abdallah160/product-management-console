@@ -26,22 +26,13 @@ public class CsvProductReader : IProductReader
             string[] values = line.Split(',');
 
             if (values.Length < 5)
-            {
-                Console.WriteLine($"  [CSV line {lineNumber}] Skipped: not enough columns.");
                 continue;
-            }
 
             if (!decimal.TryParse(values[3], out decimal price))
-            {
-                Console.WriteLine($"  [CSV line {lineNumber}] Skipped: invalid price value '{values[3].Trim()}'.");
                 continue;
-            }
 
             if (!int.TryParse(values[4], out int quantity))
-            {
-                Console.WriteLine($"  [CSV line {lineNumber}] Skipped: invalid quantity value '{values[4].Trim()}'.");
                 continue;
-            }
 
             yield return new Product(values[0], values[1], values[2], price, quantity);
         }

@@ -52,7 +52,10 @@ while (running)
     {
         string csvPath = Path.Combine(AppContext.BaseDirectory, "products_no_id.csv");
         var reader = ProductReaderFactory.Create(ReaderType.Csv);
-        productService.AddProductsFromReader(reader, csvPath);
+        var messages = productService.AddProductsFromReader(reader, csvPath);
+        foreach (string message in messages)
+            Console.WriteLine(message);
+        Console.WriteLine();
     }
     else if (userInput == "3")
     {

@@ -43,8 +43,10 @@ public class ProductService : IProductService
         return result;
     }
 
-    public void AddProductsFromReader(IProductReader reader, string source)
+    public IReadOnlyList<string> AddProductsFromReader(IProductReader reader, string source)
     {
+        var messages = new List<string>();
+
         foreach (Product product in reader.ReadProducts(source))
         {
             try
@@ -52,21 +54,20 @@ public class ProductService : IProductService
                 ValidationResult result = _validator.Validate(product);
                 if (!result.IsValid)
                 {
-                    Console.WriteLine($"Skipping product '{product.Name}' due to validation errors:");
-                    foreach (string error in result.Errors)
-                        Console.WriteLine($"  - {error}");
+                    messages.Add($"Skipping '{product.Name}': {string.Join(", ", result.Errors)}");
                     continue;
                 }
 
                 _repository.Add(product);
-                Console.WriteLine($"Product '{product.Name}' added successfully (ID: {product.ProductID})");
+                messages.Add($"Added '{product.Name}' (ID: {product.ProductID})");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error processing entry: {ex.Message}");
+                messages.Add($"Error: {ex.Message}");
             }
         }
-        Console.WriteLine();
+
+        return messages;
     }
 
     public void DisplayProducts(IProductWriter writer)
