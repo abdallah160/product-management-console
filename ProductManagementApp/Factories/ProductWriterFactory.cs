@@ -7,7 +7,7 @@ public enum WriterType { Console, Json }
 
 public class ProductWriterFactory
 {
-    public IProductWriter Create(WriterType type, string? outputPath = null) => type switch
+    public static IProductWriter Create(WriterType type, string? outputPath = null) => type switch
     {
         WriterType.Console => new ConsoleProductWriter(),
         WriterType.Json => new JsonProductWriter(outputPath ?? "products.json"),

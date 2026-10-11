@@ -7,7 +7,7 @@ public enum ReaderType { Console, Csv }
 
 public class ProductReaderFactory
 {
-    public IProductReader Create(ReaderType type) => type switch
+    public static IProductReader Create(ReaderType type) => type switch
     {
         ReaderType.Console => new ConsoleProductReader(),
         ReaderType.Csv => new CsvProductReader(),
