@@ -1,87 +1,77 @@
-namespace ProductManagementApp;
 
-internal class Program
+using ProductManagementApp.Factories;
+using ProductManagementApp.Repositories;
+using ProductManagementApp.Services;
+using ProductManagementApp.Services.Interfaces;
+using ProductManagementApp.Validation;
+
+// Composition root
+IProductService productService = new ProductService(
+    new ProductRepository(),
+    new ProductValidator()
+);
+
+bool running = true;
+while (running)
 {
-    static void Main(string[] args)
+    Console.WriteLine("Choose from the menu:");
+    Console.WriteLine("  1. Add a product manually");
+    Console.WriteLine("  2. Add products from CSV file");
+    Console.WriteLine("  3. Display all products (Console)");
+    Console.WriteLine("  4. Export all products to JSON");
+    Console.WriteLine("  5. Exit");
+
+    string? userInput = Console.ReadLine();
+    Console.WriteLine();
+
+    if (userInput == "1")
     {
-        ProductRepository productRepository = new ProductRepository();
-        bool running = true;
-        while (running)
+        try
         {
-            Console.WriteLine("choose from the menu: \n1.Add a product Manually \n2.Add products via CSV file \n3.Display all products \n4.Stop the application");
-            string? userInput = Console.ReadLine();
-            if (userInput == "1")
+            var reader = ProductReaderFactory.Create(ReaderType.Console);
+            var result = productService.AddProductFromReader(reader);
+
+            if (result.IsValid)
             {
-                try
-                {
-                    Console.WriteLine("\nPlease enter the product code:");
-                    string productCode = Console.ReadLine() ?? string.Empty;
-
-                    Console.WriteLine("Please enter the product name:");
-                    string name = Console.ReadLine() ?? string.Empty;
-
-                    Console.WriteLine("Please enter the product description:");
-                    string description = Console.ReadLine() ?? string.Empty;
-
-                    Console.WriteLine("Please enter the product price:");
-                    string? price = Console.ReadLine();
-                    if (!decimal.TryParse(price, out decimal realPrice))
-                    {
-                        throw new ArgumentException("price must be a numeric/decimal value");
-                    }
-
-                    Console.WriteLine("Please enter the product quantity:");
-                    string? quantity = Console.ReadLine();
-                    if (!int.TryParse(quantity, out int realQuantity))
-                    {
-                        throw new ArgumentException("quantity must be a numeric value");
-                    }
-
-                    Product product = new Product(productCode, name, description, realPrice, realQuantity);
-                    productRepository.Add(product);
-                    Console.WriteLine("Product #" + product.ProductID + " added successfully\n");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message + ", please try again\n");
-                }
-            }
-            else if (userInput == "2")
-            {
-                string csvPath = Path.Combine(AppContext.BaseDirectory, "products_no_id.csv");
-                CsvProductReader.ReadFromCsv(csvPath, productRepository);
-            }
-            else if (userInput == "3")
-            {
-                IReadOnlyList<Product> products = productRepository.GetAll();
-                if (products.Count > 0)
-                {
-                    Console.WriteLine("\n--- Available Products ---");
-                    string format = "{0,-5} | {1,-12} | {2,-30} | {3,-120} | {4,10} | {5,8}";
-                    Console.WriteLine(string.Format(format, "ID", "Code", "Name", "Description", "Price", "Qty"));
-                    Console.WriteLine(new string('-', 195));
-
-                    foreach (Product p in products)
-                    {
-                        Console.WriteLine(format, p.ProductID, p.ProductCode, p.Name, p.Description, p.Price, p.Quantity);
-                    }
-
-                    Console.WriteLine(new string('-', 195));
-                    Console.WriteLine($"Total products: {products.Count}\n");
-                }
-                else
-                {
-                    Console.WriteLine("\nThere are no products yet.\n");
-                }
-            }
-            else if (userInput == "4")
-            {
-                return;
+                Console.WriteLine("Product added successfully.\n");
             }
             else
             {
-                Console.WriteLine("Please enter a valid option\n");
+                Console.WriteLine("Product could not be added due to the following errors:");
+                foreach (string error in result.Errors)
+                    Console.WriteLine($"  - {error}");
+                Console.WriteLine();
             }
         }
+        catch (FormatException ex)
+        {
+            Console.WriteLine($"Input error: {ex.Message}\n");
+        }
+    }
+    else if (userInput == "2")
+    {
+        string csvPath = Path.Combine(AppContext.BaseDirectory, "products_no_id.csv");
+        var reader = ProductReaderFactory.Create(ReaderType.Csv);
+        productService.AddProductsFromReader(reader, csvPath);
+    }
+    else if (userInput == "3")
+    {
+        var writer = ProductWriterFactory.Create(WriterType.Console);
+        productService.DisplayProducts(writer);
+    }
+    else if (userInput == "4")
+    {
+        string jsonPath = Path.Combine(AppContext.BaseDirectory, "products.json");
+        var writer = ProductWriterFactory.Create(WriterType.Json, jsonPath);
+        productService.DisplayProducts(writer);
+    }
+    else if (userInput == "5")
+    {
+        running = false;
+    }
+    else
+    {
+        Console.WriteLine("Please enter a valid option.\n");
     }
 }
+

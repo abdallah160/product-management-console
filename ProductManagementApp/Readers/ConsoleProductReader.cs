@@ -1,8 +1,36 @@
+using ProductManagementApp.Models;
 using ProductManagementApp.Readers.Interfaces;
 
-namespace ProductManagementApp.Readers
+namespace ProductManagementApp.Readers;
+
+public class ConsoleProductReader : IProductReader
 {
-    public class ConsoleProductReader : IProductReader
+    public Product ReadProduct()
     {
+        Console.WriteLine("\nPlease enter the product code:");
+        string productCode = Console.ReadLine() ?? string.Empty;
+
+        Console.WriteLine("Please enter the product name:");
+        string name = Console.ReadLine() ?? string.Empty;
+
+        Console.WriteLine("Please enter the product description:");
+        string description = Console.ReadLine() ?? string.Empty;
+
+        Console.WriteLine("Please enter the product price:");
+        string? priceInput = Console.ReadLine();
+        if (!decimal.TryParse(priceInput, out decimal price))
+            throw new FormatException("Price must be a numeric/decimal value.");
+
+        Console.WriteLine("Please enter the product quantity:");
+        string? quantityInput = Console.ReadLine();
+        if (!int.TryParse(quantityInput, out int quantity))
+            throw new FormatException("Quantity must be a numeric value.");
+
+        return new Product(productCode, name, description, price, quantity);
+    }
+
+    public IEnumerable<Product> ReadProducts(string source)
+    {
+        throw new NotSupportedException("ConsoleProductReader does not support reading multiple products.");
     }
 }
