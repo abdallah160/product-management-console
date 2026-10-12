@@ -19,47 +19,31 @@ public class ProductService : IProductService
         _validator = validator;
     }
 
-    public ValidationResult AddProduct(string productCode, string name, string description, decimal price, int quantity)
-    {
-        Product product = new(productCode, name, description, price, quantity);
-
-        ValidationResult result = _validator.Validate(product);
-        if (!result.IsValid)
-            return result;
-
-        _repository.Add(product);
-        return result;
-    }
-
     public ValidationResult AddProductFromReader(IProductReader reader)
     {
-        Product product = reader.ReadProduct();
+        Product? product = reader.Read().FirstOrDefault();
+        if (product is null)
+            return new ValidationResult();
 
-        ValidationResult result = _validator.Validate(product);
-        if (!result.IsValid)
-            return result;
-
-        _repository.Add(product);
-        return result;
+        return AddProduct(product);
     }
 
-    public IReadOnlyList<string> AddProductsFromReader(IProductReader reader, string source)
+    public IReadOnlyList<string> AddProductsFromReader(IProductReader reader)
     {
         var messages = new List<string>();
 
-        foreach (Product product in reader.ReadProducts(source))
+        foreach (Product product in reader.Read())
         {
             try
             {
-                ValidationResult result = _validator.Validate(product);
+                ValidationResult result = AddProduct(product);
                 if (!result.IsValid)
                 {
                     messages.Add($"Skipping '{product.Name}': {string.Join(", ", result.Errors)}");
                     continue;
                 }
 
-                _repository.Add(product);
-                messages.Add($"Added '{product.Name}' (ID: {product.ProductID})");
+                messages.Add($"Added '{product.Name}' (ID: {product.ProductId})");
             }
             catch (Exception ex)
             {
@@ -75,8 +59,13 @@ public class ProductService : IProductService
         writer.Write(_repository.GetAll());
     }
 
-    public IReadOnlyList<Product> GetAllProducts()
+    private ValidationResult AddProduct(Product product)
     {
-        return _repository.GetAll();
+        ValidationResult result = _validator.Validate(product);
+        if (!result.IsValid)
+            return result;
+
+        _repository.Add(product);
+        return result;
     }
 }
