@@ -10,7 +10,7 @@ public class ProductRepository : IProductRepository
 
     public void Add(Product product)
     {
-        product.ProductID = _currentId++;
+        product.ProductId = _currentId++;
         _products.Add(product);
     }
 

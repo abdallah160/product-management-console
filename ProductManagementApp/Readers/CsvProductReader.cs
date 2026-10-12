@@ -5,20 +5,21 @@ namespace ProductManagementApp.Readers;
 
 public class CsvProductReader : IProductReader
 {
-    public Product ReadProduct()
+    private readonly string _csvPath;
+
+    public CsvProductReader(string csvPath = "products_no_id.csv")
     {
-        throw new NotSupportedException("CsvProductReader does not support reading a single product interactively.");
+        _csvPath = csvPath;
     }
 
-    public IEnumerable<Product> ReadProducts(string csvPath)
+    public IEnumerable<Product> Read()
     {
-        using StreamReader reader = new(csvPath);
+        List<Product> products = [];
+        using StreamReader reader = new(_csvPath);
         reader.ReadLine(); // skip header
 
-        int lineNumber = 1;
         while (!reader.EndOfStream)
         {
-            lineNumber++;
             string? line = reader.ReadLine();
             if (string.IsNullOrWhiteSpace(line))
                 continue;
@@ -34,7 +35,16 @@ public class CsvProductReader : IProductReader
             if (!int.TryParse(values[4], out int quantity))
                 continue;
 
-            yield return new Product(values[0], values[1], values[2], price, quantity);
+            products.Add(new Product
+            {
+                ProductCode = values[0],
+                Name = values[1],
+                Description = values[2],
+                Price = price,
+                Quantity = quantity
+            });
         }
+
+        return products;
     }
 }

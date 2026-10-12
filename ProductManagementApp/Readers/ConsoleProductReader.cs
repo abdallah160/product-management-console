@@ -5,7 +5,7 @@ namespace ProductManagementApp.Readers;
 
 public class ConsoleProductReader : IProductReader
 {
-    public Product ReadProduct()
+    public IEnumerable<Product> Read()
     {
         Console.WriteLine("\nPlease enter the product code:");
         string productCode = Console.ReadLine() ?? string.Empty;
@@ -26,11 +26,16 @@ public class ConsoleProductReader : IProductReader
         if (!int.TryParse(quantityInput, out int quantity))
             throw new FormatException("Quantity must be a numeric value.");
 
-        return new Product(productCode, name, description, price, quantity);
-    }
-
-    public IEnumerable<Product> ReadProducts(string source)
-    {
-        throw new NotSupportedException("ConsoleProductReader does not support reading multiple products.");
+        return
+        [
+            new Product
+            {
+                ProductCode = productCode,
+                Name = name,
+                Description = description,
+                Price = price,
+                Quantity = quantity
+            }
+        ];
     }
 }

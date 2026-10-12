@@ -19,7 +19,7 @@ public class ConsoleProductWriter : IProductWriter
         Console.WriteLine(new string('-', 195));
 
         foreach (Product p in products)
-            Console.WriteLine(format, p.ProductID, p.ProductCode, p.Name, p.Description, p.Price, p.Quantity);
+            Console.WriteLine(format, p.ProductId, p.ProductCode, p.Name, p.Description, p.Price, p.Quantity);
 
         Console.WriteLine(new string('-', 195));
         Console.WriteLine($"Total products: {products.Count}\n");

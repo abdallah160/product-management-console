@@ -5,7 +5,7 @@ using ProductManagementApp.Services;
 using ProductManagementApp.Services.Interfaces;
 using ProductManagementApp.Validation;
 
-// Composition root
+
 IProductService productService = new ProductService(
     new ProductRepository(),
     new ProductValidator()
@@ -51,8 +51,8 @@ while (running)
     else if (userInput == "2")
     {
         string csvPath = Path.Combine(AppContext.BaseDirectory, "products_no_id.csv");
-        var reader = ProductReaderFactory.Create(ReaderType.Csv);
-        var messages = productService.AddProductsFromReader(reader, csvPath);
+        var reader = ProductReaderFactory.Create(ReaderType.Csv, csvPath);
+        var messages = productService.AddProductsFromReader(reader);
         foreach (string message in messages)
             Console.WriteLine(message);
         Console.WriteLine();
